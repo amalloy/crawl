@@ -35,6 +35,10 @@ Beogh lastname
 
 Beogh the Brigand
 %%%%
+Herkan lastname
+
+Herkan the Cunning
+%%%%
 Fedhas lastname
 
 Fedhas Madash

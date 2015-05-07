@@ -366,6 +366,13 @@ const char* god_gain_power_messages[NUM_GODS][MAX_GOD_ABILITIES] =
       "gather your power into a mighty leap",
       "wreak a terrible wrath on your foes"
     },
+    //Herkan
+    { "",
+      "",
+      "",
+      "",
+      ""
+    },
 };
 
 /**
@@ -510,6 +517,14 @@ const char* god_lose_power_messages[NUM_GODS][MAX_GOD_ABILITIES] =
       "use your power to heal your body and restore your magic",
       "gather your power into a mighty leap",
       "wreak a terrible wrath on all visible foes"
+    },
+    // Herkan
+    {
+        "",
+        "",
+        "",
+        "",
+        ""
     },
 };
 
@@ -2046,6 +2061,7 @@ string god_name(god_type which_god, bool long_name)
     case GOD_QAZLAL:        return "Qazlal";
     case GOD_RU:            return "Ru";
     case GOD_JIYVA: // This is handled at the beginning of the function
+    case GOD_HERKAN:        return "Herkan";
     case GOD_ECUMENICAL:    return "an unknown god";
     case NUM_GODS:          return "Buggy";
     }
@@ -4083,6 +4099,7 @@ void handle_god_time(int /*time_delta*/)
 
         case GOD_SHINING_ONE:
         case GOD_NEMELEX_XOBEH:
+        case GOD_HERKAN:
             if (one_chance_in(35))
                 lose_piety(1);
             break;
@@ -4179,6 +4196,7 @@ int god_colour(god_type god) // mv - added
 
     case GOD_QAZLAL:
     case GOD_RU:
+    case GOD_HERKAN:
         return BROWN;
 
     case GOD_NO_GOD:
