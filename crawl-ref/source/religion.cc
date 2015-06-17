@@ -367,7 +367,7 @@ const char* god_gain_power_messages[NUM_GODS][MAX_GOD_ABILITIES] =
       "wreak a terrible wrath on your foes"
     },
     //Herkan
-    { "",
+    { "say hello to Herkan",
       "",
       "",
       "",
@@ -520,7 +520,7 @@ const char* god_lose_power_messages[NUM_GODS][MAX_GOD_ABILITIES] =
     },
     // Herkan
     {
-        "",
+        "say hello to Herkan",
         "",
         "",
         "",

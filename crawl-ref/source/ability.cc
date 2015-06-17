@@ -192,7 +192,7 @@ ability_type god_abilities[NUM_GODS][MAX_GOD_ABILITIES] =
     { ABIL_NON_ABILITY, ABIL_NON_ABILITY, ABIL_RU_DRAW_OUT_POWER,
       ABIL_RU_POWER_LEAP, ABIL_RU_APOCALYPSE },
     // Herkan
-    { ABIL_NON_ABILITY, ABIL_NON_ABILITY, ABIL_NON_ABILITY, ABIL_NON_ABILITY,
+    { ABIL_HERKAN_HELLO, ABIL_NON_ABILITY, ABIL_NON_ABILITY, ABIL_NON_ABILITY,
       ABIL_NON_ABILITY }
 };
 
@@ -457,6 +457,9 @@ static const ability_def Ability_List[] =
       6, 0, 0, 6, ABFLAG_NONE },
     { ABIL_QAZLAL_DISASTER_AREA, "Disaster Area", 7, 0, 0,
       generic_cost::range(10, 14), ABFLAG_NONE },
+
+    // Herkan
+    { ABIL_HERKAN_HELLO, "Hello, world!", 2, 0, 0, 1, ABFLAG_NONE},
 
     { ABIL_STOP_RECALL, "Stop Recall", 0, 0, 0, 0, ABFLAG_NONE},
     { ABIL_RENOUNCE_RELIGION, "Renounce Religion", 0, 0, 0, 0, ABFLAG_NONE},
@@ -941,6 +944,7 @@ talent get_talent(ability_type ability, bool check_confused)
     case ABIL_RU_SACRIFICE_EYE:
     case ABIL_RU_SACRIFICE_RESISTANCE:
     case ABIL_RU_REJECT_SACRIFICES:
+    case ABIL_HERKAN_HELLO:
     case ABIL_STOP_RECALL:
         invoc = true;
         failure = 0;
@@ -2819,6 +2823,11 @@ static spret_type _do_ability(const ability_def& abil, bool fail)
         if (!ru_apocalypse())
             return SPRET_ABORT;
         you.increase_duration(DUR_EXHAUSTED, 30 + random2(20));
+        break;
+
+    case ABIL_HERKAN_HELLO:
+        fail_check();
+        simple_god_message(" says: Hello, world!");
         break;
 
     case ABIL_RENOUNCE_RELIGION:

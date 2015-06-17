@@ -335,6 +335,8 @@ enum ability_type
         ABIL_FINAL_SACRIFICE = ABIL_RU_SACRIFICE_RESISTANCE,
     ABIL_RU_REJECT_SACRIFICES,
 
+    ABIL_HERKAN_HELLO = 1250,
+
     // For both Yred and Beogh
     ABIL_STOP_RECALL = 1500,
 
