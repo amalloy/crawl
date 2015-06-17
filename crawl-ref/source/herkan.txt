@@ -16,12 +16,16 @@ rC-) as soon as an OOF comes into view, but you also don't have to spend 20 turn
 whatever, which would be annoying if popcorn monsters interrupted you. TODO: warmup encourages
 pressing 5, which is crummy, so it'd be nice to find a friendlier mechanic
 
+Possible concern: if what Invocations does is defray the Horr cost of holding more abilities, I've
+effectively turned Invocations into just a generic +damage skill. It would be nice to find a use
+for Invocations that is more exciting.
+
 Candidate preparations/penalties table:
 
 Advantage       Penalty   Piety required    Notes
 +Slay           -AC/EV    *                 Here "Slay" also applies to spellpower, as with Horr/Aug
-+EV             -AC/Slay  *                 And the bonus for these three should be larger than the
-+AC             -EV/Slay  *                 penalty, eg +6 EV but only -2AC/-2Slay or whatever
++EV/AC          -Slay     *                 And the bonus for these three should be larger than the
+                                            penalty, eg +6 EV/AC but only -3Slay or whatever
                                             (also, large enough to compensate for the extra -Horr)
 
 Regen+          Hunger+   **                Hunger applies even when at full health: it's not "free"
@@ -44,8 +48,8 @@ Escape route    Stasis*   *****             Places an anchor at the player's loc
                                             cannot take any actions (they are effectively paralysed)
                                             The stasis only prevents tloc/haste, not nasty effects
                                             like slow/paralyse (or maybe it does?)
-Multi-action    Monsters  *****             Lets you perform some large number of turns (5? 10?)
-                Reciprocate                 in a row, taking up no time. Causes Exh after
+Dervish         Monster   *****             Lets you perform some large number of turns (5? 10?)
+                Dervish!                    in a row, taking up no time. Causes Exh after
                                             activating, plus gives monsters a chance to take
                                             several turns in a row against you. Probably fewer, like
                                             if you get 100 auts, monsters probably only get 50 auts,
