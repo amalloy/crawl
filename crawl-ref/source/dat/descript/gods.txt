@@ -59,6 +59,10 @@ Followers of Gozag do not earn piety; the only way to impress this god is by
 amassing a fortune, and worshippers may request as much assistance as they can
 afford. Fortunately, Gozag's worshippers are said to have the touch of gold.
 %%%%
+Herkan
+
+Herkan is the god of introductory computer programs.
+%%%%
 Jiyva
 
 Jiyva is the ancient deity of the slimes. Followers are expected to
@@ -248,6 +252,12 @@ distracted by imaginings of great wealth. Stalwarts can order immediate help
 in the form of potions, with prices being dictated by the Greedy. Particularly
 well-off adherents may attract shopkeepers into the dungeon, and even bribe
 entire branches.
+%%%%
+Herkan powers
+
+Herkan will say "Hello, world!" to you to demonstrate how to implement god
+powers.
+
 %%%%
 Jiyva powers
 
@@ -447,6 +457,10 @@ finish their shopping before they launch their betrayal. For as long as Gozag
 remains angered, potions will have a chance to fail when quaffed, and any
 foes that are encountered may be granted potions of their own to assist them
 against the ex-worshipper.
+%%%%
+Herkan wrath
+
+Herkan will make angry faces at you if you abandon religion, or something.
 %%%%
 Jiyva wrath
 
