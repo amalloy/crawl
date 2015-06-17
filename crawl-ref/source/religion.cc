@@ -621,6 +621,7 @@ string get_god_likes(god_type which_god, bool verbose)
         break;
     }
 
+    case GOD_HERKAN:
     case GOD_ELYVILON:
         likes.emplace_back("you explore the world");
         break;
