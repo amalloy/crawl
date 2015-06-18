@@ -1,6 +1,9 @@
 #include "AppHdr.h"
 
 #include "enum.h"
+#include "preparation.h"
+
+
 #include "preparation-data.h"
 
 // void init_preparation_index()

@@ -206,7 +206,7 @@ static void decrement_preparation_durations(int delay)
     for (int prep = PREP_FIRST_PREPARATION; prep <= PREP_LAST_PREPARATION; prep++)
     {
         const preparation_def& p = preparation_list[prep];
-        if (_decrement_a_duration(p.duration, delay))
+        if (_decrement_a_duration(p.warmup_duration, delay))
         {
             mpr("A thing is over"); // TODO
         }

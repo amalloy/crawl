@@ -23,18 +23,20 @@ enum preparation_type
 
 struct preparation_def
 {
-  preparation_type prep_num;
-  duration_type duration;
-  int num_stars;                   // how many pips of piety you need (also influences maluses)
+    preparation_type prep_num;
+    duration_type  warmup_duration;
+    /*duration_type*/ int duration;
 
-  const char* ability_name;        // displayed on the activate/deactivate menu
+    int num_stars;                   // how many pips of piety you need (also influences maluses)
 
-  const char* start_message;       // shown when you try to turn on a preparation
-  const char* ready_message;       // shown when it finishes warming up
-  const char* deactivate_message;  // shown when you turn it off
-  const char* finished_message;    // shown when it finishes cooling off
+    const char* ability_name;        // displayed on the activate/deactivate menu
 
-  int flags;
+    const char* start_message;       // shown when you try to turn on a preparation
+    const char* ready_message;       // shown when it finishes warming up
+    const char* deactivate_message;  // shown when you turn it off
+    const char* finished_message;    // shown when it finishes cooling off
+
+    int flags;
 };
 
 // void init_preparation_index();

@@ -364,9 +364,9 @@ static const duration_def duration_data[] =
       "You are cleaving through your foes.", D_DISPELLABLE },
     { DUR_AMBROSIA, GREEN, "Ambros", "", "ambrosia",
       "You are regenerating under the effects of ambrosia.", D_DISPELLABLE },
-    { DUR_HERKAN_ATTACKING, RED, "-P.Atk", "neglecting defence", "",
+    { DUR_HERKAN_ATTACKING_WARMUP, RED, "-P.Atk", "neglecting defence", "",
       "Your defences are worsened by your attention to attacking.", D_NO_FLAGS},
-    { DUR_HERKAN_REGENERATING, RED, "-P.Rgn", "metabolizing quickly", "",
+    { DUR_HERKAN_REGENERATING_WARMUP, RED, "-P.Rgn", "metabolizing quickly", "",
       "Your metabolism is sped up by your attention to healing.", D_NO_FLAGS },
 
     // The following are visible in wizmode only, or are handled
