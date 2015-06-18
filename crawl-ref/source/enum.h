@@ -453,6 +453,11 @@ enum attribute_type
     ATTR_LAST_FLIGHT_STATUS,   // Whether spawm_flight should be restored after form change
     ATTR_GOZAG_FIRST_POTION,   // Gozag's free first usage of Potion Petition.
     ATTR_STAT_LOSS_XP,         // Unmodified XP needed for stat recovery.
+    ATTR_HERKAN_PREP_STARS,    // total size of committed preparations (in, roughly, piety pips)
+
+    ATTR_HERKAN_ATTACKING,     // these are set to 1 if the preparation is on, or turning on,
+    ATTR_HERKAN_REGENERATING,  // and 0 if it is off, or turning off
+
     NUM_ATTRIBUTES
 };
 
@@ -1827,6 +1832,10 @@ enum duration_type
     DUR_COLLAPSE,
     DUR_BRAINLESS,
     DUR_CLUMSY,
+
+    DUR_HERKAN_ATTACKING,    // herkan's durations mean that the related attribute is being
+    DUR_HERKAN_REGENERATING, // warmed up or cooled down; so the penalties apply but not the bonus
+
     NUM_DURATIONS
 };
 

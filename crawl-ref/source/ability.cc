@@ -2828,6 +2828,7 @@ static spret_type _do_ability(const ability_def& abil, bool fail)
     case ABIL_HERKAN_HELLO:
         fail_check();
         simple_god_message(" says: Hello, world!");
+        you.increase_duration(DUR_HERKAN_ATTACKING, 10);
         break;
 
     case ABIL_RENOUNCE_RELIGION:

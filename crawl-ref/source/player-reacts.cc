@@ -91,6 +91,7 @@
 #include "output.h"
 #include "player.h"
 #include "player-stats.h"
+#include "preparation.h"
 #include "quiver.h"
 #include "random.h"
 #include "religion.h"
@@ -198,6 +199,18 @@ static bool _decrement_a_duration(duration_type dur, int delay,
     }
 
     return false;
+}
+
+static void decrement_preparation_durations(int delay)
+{
+    for (int prep = PREP_FIRST_PREPARATION; prep <= PREP_LAST_PREPARATION; prep++)
+    {
+        const preparation_def& p = preparation_list[prep];
+        if (_decrement_a_duration(p.duration, delay))
+        {
+            mpr("A thing is over"); // TODO
+        }
+    }
 }
 
 
@@ -1198,6 +1211,8 @@ static void _decrement_durations()
 
     if (_decrement_a_duration(DUR_GOZAG_GOLD_AURA, delay))
         you.props["gozag_gold_aura_amount"] = 0;
+
+    decrement_preparation_durations(delay);
 
     dec_elixir_player(delay);
 
