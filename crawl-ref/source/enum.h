@@ -1841,8 +1841,10 @@ enum duration_type
     // This is also the lifecycle of these abilities: they are naturally (1),
     // transition to (2) temporarily when activated and then to (3) when ready;
     // when deactivated they transition to (4) temporarily, and then back to (0).
-    DUR_HERKAN_ATTACKING_WARMUP,    // herkan's durations mean that the related attribute is being
-    DUR_HERKAN_REGENERATING_WARMUP, // warmed up or cooled down; so the penalties apply but not the bonus
+    DUR_HERKAN_ATTACKING_WARMUP,
+    // DUR_HERKAN_ATTACKING, //TODO
+    DUR_HERKAN_REGENERATING_WARMUP,
+    // DUR_HERKAN_REGENERATING, //TODO
 
     NUM_DURATIONS
 };
