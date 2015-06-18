@@ -14,7 +14,7 @@ Making preparations, or relaxing them, only takes a single turn. However, there 
 the penalties but gain none of the benefits. This mechanic exists so you can't prepare rF+ (or relax
 rC-) as soon as an OOF comes into view, but you also don't have to spend 20 turns praying or
 whatever, which would be annoying if popcorn monsters interrupted you. TODO: warmup encourages
-pressing 5, which is crummy, so it'd be nice to find a friendlier mechanic
+pressing 5, which is crummy, so it'd be nice to find a friendlier mechanic.
 
 Possible concern: if what Invocations does is defray the Horr cost of holding more abilities, I've
 effectively turned Invocations into just a generic +damage skill. It would be nice to find a use
