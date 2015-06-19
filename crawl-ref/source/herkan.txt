@@ -1,4 +1,4 @@
-Herkan the Cunning
+Herkan the Cunning [list of open questions at the bottom]
 
 God of forethought and adaptability. Worshippers have access to a range of temporary enhancements,
 but must prepare them well in advance of their need. Additionally, maintaining an enhancement
@@ -11,9 +11,7 @@ each preparation, as well as allowing a follower to maintain more preparations a
 Making preparations, or relaxing them, only takes a single turn. However, there is a 100-aut
 "warmup" or "cooldown" period, after activating or deactivating a preparation, in which you suffer
 the penalties but gain none of the benefits. This mechanic exists so you can't prepare rF+ (or relax
-rC-) as soon as an OOF comes into view, but you also don't have to spend 10 turns praying or
-whatever, which would be annoying if popcorn monsters interrupted you. TODO: warmup encourages
-pressing 5, which is crummy, so it'd be nice to find a friendlier mechanic.
+rC-) as soon as an OOF comes into view.
 
 Candidate preparations/penalties table:
 
@@ -50,4 +48,29 @@ Dervish         Monster   *****             Lets you perform some large number o
                                             activating, plus gives monsters a chance to take
                                             several turns in a row against you.
                                             Increased Invocations doesn't give you more turns, but
-                                            does give monsters fewer(?)
+                                            does give monsters fewer turns(?)
+
+
+Questions/problems:
+
+- Is this too much like Ru? I think of Ru as giving you a fixed set of powers with customizable
+  "conduct" via sacrifices, and Herkan as giving you a customizable set of powers with a fixed
+  conduct for each of them. But maybe in real life it ends up just feeling like another Ru.
+
+- How to encourage preparing ahead of time without just making stuff un-fun? The original idea was
+  an action with a 100-aut delay, interruptible by monsters coming into view or whatever; but this
+  could be frustrating if you keep getting interrupted by trivial monsters. Currently the idea is a
+  1-turn action, and then 100 auts during which you get only the penalty and not the bonus, but this
+  is neither totally intuitive nor terribly fun.
+
+- Is Diversion a good idea at all? It seemed like a cool "cunning" thing to prepare, but it's a lot
+  like bleeding smoke, and it also breaks the pattern of "two complementary bonuses at each level".
+
+- The ***** abilities both need careful attention: the bonus they give you is very strong, so we
+  need to make sure that the penalties are commensurate, both in terms of the negative effect and
+  the amount of XP you need to sink into Invocations to keep up the lower-tier abilities along with
+  a top-tier ability.
+
+- Having 10-12ish effects each toggleable separately clutters up the interface, and perhaps makes
+  the concept too complicated even absent interface concerns. Is this "too much" stuff? It could be
+  whittled down somehow.
