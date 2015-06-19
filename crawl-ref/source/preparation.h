@@ -1,6 +1,23 @@
 #ifndef PREPARATION_H
 #define PREPARATION_H
 
+enum preparation_state
+{
+    PREP_INACTIVE,
+    PREP_WARMING_UP,
+    PREP_ACTIVE,
+    PREP_COOLING_DOWN
+};
+
+enum preparation_flag
+{
+    PREPFLAG_NONE = 0,
+    PREPFLAG_NO_UNDEAD = 1,
+    PREPFLAG_NO_DEEP_DWARF = 2,
+};
+
+DEF_BITFIELD(preparation_flags, preparation_flag);
+
 enum preparation_type
 {
   PREP_ATTACK,
@@ -17,15 +34,11 @@ enum preparation_type
   PREP_LAST_PREPARATION = PREP_REGEN, /* TODO update as more preps implemented */
 };
 
-#define PREPFLAG_NONE 0
-#define PREPFLAG_NO_UNDEAD 1
-#define PREPFLAG_NO_DEEP_DWARF 2
-
 struct preparation_def
 {
     preparation_type prep_num;
-    duration_type  warmup_duration;
-    /*duration_type*/ int duration;
+    duration_type warmup_duration;
+    duration_type duration;
 
     int num_stars;                   // how many pips of piety you need (also influences maluses)
 
@@ -36,10 +49,10 @@ struct preparation_def
     const char* deactivate_message;  // shown when you turn it off
     const char* finished_message;    // shown when it finishes cooling off
 
-    int flags;
+    preparation_flags flags;
 };
 
-// void init_preparation_index();
 extern const preparation_def preparation_list[];
+preparation_state preparation_status(const preparation_def &);
 
 #endif

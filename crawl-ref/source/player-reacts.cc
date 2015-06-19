@@ -208,7 +208,18 @@ static void decrement_preparation_durations(int delay)
         const preparation_def& p = preparation_list[prep];
         if (_decrement_a_duration(p.warmup_duration, delay))
         {
-            mpr("A thing is over"); // TODO
+            if (you.duration[p.duration])
+            {
+                // ability has finished cooling down, and is now totally off
+                you.duration[p.duration] = 0;
+                mprf(MSGCH_DURATION, "%s", p.finished_message);
+            }
+            else
+            {
+                // ability has finished warming up, and is now fully active
+                you.duration[p.duration] = 1; // never automatically decremented
+                mprf(MSGCH_DURATION, "%s", p.ready_message);
+            }
         }
     }
 }

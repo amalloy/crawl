@@ -1842,9 +1842,9 @@ enum duration_type
     // transition to (2) temporarily when activated and then to (3) when ready;
     // when deactivated they transition to (4) temporarily, and then back to (0).
     DUR_HERKAN_ATTACKING_WARMUP,
-    // DUR_HERKAN_ATTACKING, //TODO
+    DUR_HERKAN_ATTACKING,
     DUR_HERKAN_REGENERATING_WARMUP,
-    // DUR_HERKAN_REGENERATING, //TODO
+    DUR_HERKAN_REGENERATING,
 
     NUM_DURATIONS
 };

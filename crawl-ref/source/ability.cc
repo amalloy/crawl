@@ -48,6 +48,7 @@
 #include "output.h"
 #include "player-stats.h"
 #include "potion.h"
+#include "preparation.h"
 #include "prompt.h"
 #include "religion.h"
 #include "skills.h"
@@ -2826,10 +2827,30 @@ static spret_type _do_ability(const ability_def& abil, bool fail)
         break;
 
     case ABIL_HERKAN_HELLO:
+    {
+        const preparation_def& p = preparation_list[PREP_ATTACK];
+        const char *message;
         fail_check();
-        simple_god_message(" says: Hello, world!");
+        switch (preparation_status(p))
+        {
+        case PREP_WARMING_UP:
+        case PREP_COOLING_DOWN:
+            // TODO give these different fail messages, and generalize ability handler
+            mpr("You're already focusing closely on your attacks.");
+            return SPRET_ABORT;
+
+        case PREP_ACTIVE:
+            message = p.deactivate_message;
+            break;
+
+        case PREP_INACTIVE:
+            message = p.start_message;
+            break;
+        }
+        mpr(message);
         you.increase_duration(DUR_HERKAN_ATTACKING_WARMUP, 10);
         break;
+    }
 
     case ABIL_RENOUNCE_RELIGION:
         fail_check();
