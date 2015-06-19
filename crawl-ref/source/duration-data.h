@@ -366,12 +366,8 @@ static const duration_def duration_data[] =
       "You are regenerating under the effects of ambrosia.", D_DISPELLABLE },
     { DUR_HERKAN_ATTACKING_WARMUP, RED, "-Def", "neglecting defence", "",
       "Your defences are weakened by your attention to attacking.", D_NO_FLAGS},
-    { DUR_HERKAN_ATTACKING, GREEN, "+Atk", "focusing on attacks", "",
-      "You are keenly focused on attacks, but neglecting defence.", D_NO_FLAGS},
     { DUR_HERKAN_REGENERATING_WARMUP, RED, "+Hunger", "metabolizing quickly", "",
       "Your metabolism is sped up by your attention to healing.", D_NO_FLAGS },
-    { DUR_HERKAN_REGENERATING, GREEN, "+Regen", "fueling regeneration", "",
-      "You are metabolizing food repidly to provide fuel for healing.", D_NO_FLAGS },
 
     // The following are visible in wizmode only, or are handled
     // specially in the status lights and/or the % or @ screens.
@@ -409,6 +405,9 @@ static const duration_def duration_data[] =
     { DUR_COLLAPSE, 0, "", "", "collapse", "", D_NO_FLAGS },
     { DUR_BRAINLESS, 0, "", "", "brainless", "", D_NO_FLAGS },
     { DUR_CLUMSY, 0, "", "", "clumsy", "", D_NO_FLAGS },
+    { DUR_HERKAN_ATTACKING, 0, "", "", "", "", D_NO_FLAGS},
+    { DUR_HERKAN_REGENERATING, 0, "", "", "", "", D_NO_FLAGS },
+
 
 #if TAG_MAJOR_VERSION == 34
     // And removed ones

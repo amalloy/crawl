@@ -1,6 +1,8 @@
 #ifndef PREPARATION_H
 #define PREPARATION_H
 
+#include "status.h"
+
 enum preparation_state
 {
     PREP_INACTIVE,
@@ -34,6 +36,15 @@ enum preparation_type
   PREP_LAST_PREPARATION = PREP_REGEN, /* TODO update as more preps implemented */
 };
 
+struct preparation_status_bar
+{
+    status_type status;
+    int light_colour;
+    const char* light_text;
+    const char* short_text;
+    const char* long_text;
+};
+
 struct preparation_def
 {
     preparation_type prep_num;
@@ -48,6 +59,8 @@ struct preparation_def
     const char* ready_message;       // shown when it finishes warming up
     const char* deactivate_message;  // shown when you turn it off
     const char* finished_message;    // shown when it finishes cooling off
+
+    preparation_status_bar status_bar;
 
     preparation_flags flags;
 };

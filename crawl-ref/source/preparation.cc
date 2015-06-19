@@ -12,7 +12,7 @@ preparation_state preparation_status(const preparation_def& p)
     int warmup_dur = you.duration[p.warmup_duration];
     int dur = you.duration[p.duration];
     if (warmup_dur)
-        return dur ? PREP_COOLING_DOWN : PREP_INACTIVE;
+        return dur ? PREP_COOLING_DOWN : PREP_WARMING_UP;
     else
-        return dur ? PREP_ACTIVE : PREP_WARMING_UP;
+        return dur ? PREP_ACTIVE : PREP_INACTIVE;
 }

@@ -14,6 +14,7 @@
 #include "mutation.h"
 #include "options.h"
 #include "player-stats.h"
+#include "preparation.h"
 #include "religion.h"
 #include "spl-transloc.h"
 #include "stringutil.h"
@@ -148,6 +149,7 @@ static void _describe_stat_zero(status_info* inf, stat_type st);
 static void _describe_terrain(status_info* inf);
 static void _describe_missiles(status_info* inf);
 static void _describe_invisible(status_info* inf);
+static void _describe_herkan_status(status_info* inf, int status);
 
 bool fill_status_info(int status, status_info* inf)
 {
@@ -604,6 +606,11 @@ bool fill_status_info(int status, status_info* inf)
     }
 
     default:
+        if (status >= STATUS_FIRST_HERKAN && status <= STATUS_LAST_HERKAN)
+        {
+            _describe_herkan_status(inf, status);
+            break;
+        }
         if (!found)
         {
             inf->light_colour = RED;
@@ -961,4 +968,21 @@ static void _describe_invisible(status_info* inf)
     _mark_expiring(inf, dur_expiring(you.form == TRAN_SHADOW
                                      ? DUR_TRANSFORMATION
                                      : DUR_INVIS));
+}
+
+static void _describe_herkan_status(status_info* inf, int status)
+{
+    int pindex = status - STATUS_FIRST_HERKAN;
+    ASSERT(pindex <= PREP_LAST_PREPARATION);
+    const preparation_def &p = preparation_list[pindex];
+    const preparation_status_bar bar = p.status_bar;
+    ASSERT(bar.status == status);
+
+    if (you.duration[p.duration] && !you.duration[p.warmup_duration])
+    {
+        inf->light_colour = bar.light_colour;
+        inf->light_text = bar.light_text;
+        inf->short_text = bar.long_text;
+        inf->long_text = bar.long_text;
+    }
 }
