@@ -1373,7 +1373,7 @@ const CrawlStoreValue& CrawlHashTable::get_value(const string &key) const
     auto iter = find(key);
     ASSERTM(iter != end(), "trying to read non-existent property \"%s\"", key.c_str());
 
-    const CrawlStoreValue& store = *iter;
+    const CrawlStoreValue& store = iter->second;
     ASSERT(store.type != SV_NONE);
     ASSERT(!(store.flags & SFLAG_UNSET));
 
