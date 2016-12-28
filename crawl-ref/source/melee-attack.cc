@@ -2997,17 +2997,17 @@ void melee_attack::mons_apply_attack_flavour()
     // Water tiles are prioritized!
     case AF_THRASH:
         {
-            coord_def new_pos;
             const actor& thrashee = *defender;
-            if (!random_choose_weighted(&new_pos, adjacent_iterator(attacker->pos()),
-                                        [&thrashee](const coord_def& dest)
+            const auto new_pos = random_choose_weighted(adjacent_iterator(attacker->pos()),
+                                                        [&thrashee](const coord_def& dest)
                 {
-                  if (actor_at(dest) || !thrashee.is_habitable_feat(grd(dest)))
-                    return 0;
-                  if (feat_is_water(grd(dest)))
-                    return 3;
-                  return 1;
-                }))
+                    if (actor_at(dest) || !thrashee.is_habitable_feat(grd(dest)))
+                        return 0;
+                    if (feat_is_water(grd(dest)))
+                        return 3;
+                    return 1;
+                });
+            if (!new_pos)
             {
                 // Nowhere to thrash to!!
                 break;
@@ -3022,12 +3022,12 @@ void melee_attack::mons_apply_attack_flavour()
 
             if (defender->is_player())
             {
-                move_player_to_grid(new_pos, false);
+                move_player_to_grid(*new_pos, false);
                 // Interrupt stair travel and passwall.
                 stop_delay(true);
             }
             else
-                defender->move_to_pos(new_pos);
+                defender->move_to_pos(*new_pos);
 
             break;
         }
