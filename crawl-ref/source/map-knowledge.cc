@@ -285,9 +285,9 @@ bool map_cell::update_cloud_state()
     return false;
 }
 
-bool player_believes(const coord_def& pos, function<bool(const map_call& cell)> pred)
+bool player_believes(const coord_def& pos, function<bool(const map_cell& cell)> pred)
 {
-    if (!map_bounds(gc))
+    if (!map_bounds(pos))
         return false;
     return pred(env.map_knowledge(pos));
 }
