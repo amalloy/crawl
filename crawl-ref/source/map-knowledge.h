@@ -347,3 +347,5 @@ void clear_map_or_travel_trail();
 map_feature get_cell_map_feature(const map_cell& cell);
 
 void reautomap_level();
+
+bool player_believes(const coord_def& pos, function<bool(const map_call& cell)>);

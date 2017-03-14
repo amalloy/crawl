@@ -284,3 +284,10 @@ bool map_cell::update_cloud_state()
     // TODO: track decay & vanish appropriately (based on some worst case?)
     return false;
 }
+
+bool player_believes(const coord_def& pos, function<bool(const map_call& cell)> pred)
+{
+    if (!map_bounds(gc))
+        return false;
+    return pred(env.map_knowledge(pos));
+}
