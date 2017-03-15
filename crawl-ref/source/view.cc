@@ -42,6 +42,7 @@
 #include "item-status-flag-type.h"
 #include "libutil.h"
 #include "macro.h"
+#include "map-knowledge.h"
 #include "message.h"
 #include "misc.h"
 #include "mon-behv.h"
@@ -1483,7 +1484,7 @@ void draw_cell(screen_cell_t *cell, const coord_def &gc,
     cell->flash_colour = BLACK;
 
     // Don't hide important information by recolouring monsters.
-    bool allow_mon_recolour = player_believes(gc, [](const map_cell& m) {
+    bool allow_mon_recolour = player_believes(true, gc, [](const map_cell& m) {
         return m.monster() == MONS_NO_MONSTER || mons_class_is_firewood(m.monster());
     });
 

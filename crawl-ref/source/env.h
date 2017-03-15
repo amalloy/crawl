@@ -3,7 +3,8 @@
 #include <set>
 #include <memory> // unique_ptr
 
-#include "map-knowledge.h"
+#include "coord.h"
+#include "map-cell.h"
 #include "monster.h"
 #include "trap-def.h"
 
@@ -149,3 +150,15 @@ static const struct menv_range_proxy
     monster *begin() const { return &menv[0]; }
     monster *end()   const { return &menv[MAX_MONSTERS]; }
 } menv_real;
+
+
+// F should be something convertible to function<T(const map_cell&)>
+// it will be called only if pos is in-bounds; otherwise the default
+// value is returned without calling f at all
+template<typename T, typename F>
+T player_believes(T default_value, const coord_def& pos, F f)
+{
+    if (!map_bounds(pos))
+        return default_value;
+    return f(env.map_knowledge(pos));
+}
