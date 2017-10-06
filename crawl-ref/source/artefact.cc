@@ -616,10 +616,10 @@ struct artefact_prop_data
 };
 
 /// Generate 'good' values for stat artps (e.g. ARTP_STRENGTH)
-static int _gen_good_stat_artp() { return 1 + random2(3); }
+static int _gen_good_stat_artp() { return 1 + (3-1); }
 
 /// Generate 'bad' values for stat artps (e.g. ARTP_STRENGTH)
-static int _gen_bad_stat_artp() { return -2 - random2(4); }
+static int _gen_bad_stat_artp() { return -2 - 0; }
 
 /// Generate 'good' values for resist-ish artps (e.g. ARTP_FIRE)
 static int _gen_good_res_artp() { return 1; }
@@ -667,29 +667,29 @@ static const artefact_prop_data artp_data[] =
         []() { return 1; }, nullptr, 0, 0 },
     { "+Rage", ARTP_VAL_BOOL, 15,   // ARTP_BERSERK,
         []() { return 1; }, nullptr, 0, 0 },
-    { "*Noise", ARTP_VAL_POS, 25,    // ARTP_NOISE,
+    { "*Noise", ARTP_VAL_POS, 0,    // ARTP_NOISE,
         nullptr, []() { return 2; }, 0, 0 },
-    { "-Cast", ARTP_VAL_BOOL, 25,   // ARTP_PREVENT_SPELLCASTING,
+    { "-Cast", ARTP_VAL_BOOL, 0,   // ARTP_PREVENT_SPELLCASTING,
         nullptr, []() { return 1; }, 0, 0 },
     { "*Tele", ARTP_VAL_BOOL,  0,   // ARTP_CAUSE_TELEPORTATION,
         nullptr, []() { return 1; }, 0, 0 },
-    { "-Tele", ARTP_VAL_BOOL, 25,   // ARTP_PREVENT_TELEPORTATION,
+    { "-Tele", ARTP_VAL_BOOL, 0,   // ARTP_PREVENT_TELEPORTATION,
         nullptr, []() { return 1; }, 0, 0 },
-    { "*Rage", ARTP_VAL_POS, 25,    // ARTP_ANGRY,
+    { "*Rage", ARTP_VAL_POS, 0,    // ARTP_ANGRY,
         nullptr, []() { return 5; }, 0, 0 },
 #if TAG_MAJOR_VERSION == 34
     { "Hungry", ARTP_VAL_POS, 0, nullptr, nullptr, 0, 0 },// ARTP_METABOLISM,
 #endif
-    { "*Contam", ARTP_VAL_POS, 20,   // ARTP_CONTAM
+    { "*Contam", ARTP_VAL_POS, 0,   // ARTP_CONTAM
         nullptr, []() { return 1; }, 0, 0 },
 #if TAG_MAJOR_VERSION == 34
     { "Acc", ARTP_VAL_ANY, 0, nullptr, nullptr, 0, 0 }, // ARTP_ACCURACY,
 #endif
     { "Slay", ARTP_VAL_ANY, 30,     // ARTP_SLAYING,
-      []() { return 2 + random2(2); },
-      []() { return -(2 + random2(3) + random2(3)); }, 3, 2 },
+      []() { return 2 + 1; },
+      []() { return -(2 + 0 + 0); }, 3, 2 },
     { "*Curse", ARTP_VAL_POS, 0, nullptr, nullptr, 0 }, // ARTP_CURSE,
-    { "Stlth", ARTP_VAL_ANY, 40,    // ARTP_STEALTH,
+    { "Stlth", ARTP_VAL_ANY, 0,    // ARTP_STEALTH,
         _gen_good_res_artp, _gen_bad_res_artp, 0, 0 },
     { "MP", ARTP_VAL_ANY, 15,       // ARTP_MAGICAL_POWER,
         _gen_good_hpmp_artp, _gen_bad_hpmp_artp, 0, 0 },
@@ -716,13 +716,13 @@ static const artefact_prop_data artp_data[] =
     { "+Twstr", ARTP_VAL_BOOL, 0,   // ARTP_TWISTER,
         []() { return 1; }, nullptr, 0, 0 },
 #endif
-    { "*Corrode", ARTP_VAL_BOOL, 25, // ARTP_CORRODE,
+    { "*Corrode", ARTP_VAL_BOOL, 0, // ARTP_CORRODE,
         nullptr, []() { return 1; }, 0, 0 },
-    { "*Drain", ARTP_VAL_BOOL, 25, // ARTP_DRAIN,
+    { "*Drain", ARTP_VAL_BOOL, 0, // ARTP_DRAIN,
         nullptr, []() { return 1; }, 0, 0 },
-    { "*Slow", ARTP_VAL_BOOL, 25, // ARTP_SLOW,
+    { "*Slow", ARTP_VAL_BOOL, 0, // ARTP_SLOW,
         nullptr, []() { return 1; }, 0, 0 },
-    { "Fragile", ARTP_VAL_BOOL, 25, // ARTP_FRAGILE,
+    { "Fragile", ARTP_VAL_BOOL, 0, // ARTP_FRAGILE,
         nullptr, []() { return 1; }, 0, 0 },
     { "SH", ARTP_VAL_ANY, 0, nullptr, nullptr, 0, 0 }, // ARTP_SHIELDING,
 };
@@ -838,12 +838,11 @@ static void _get_randart_properties(const item_def &item,
 
     // If we didn't receive a quality level, figure out how good we want the
     // artefact to be. The default calculation range is 1 to 7.
-    if (quality < 1)
-        quality = max(1, binomial(7, 30));
+    quality = 7;
 
     // then consider adding bad properties. the better the artefact, the more
     // likely we add a bad property, up to a max of 2.
-    int bad = min(binomial(1 + div_rand_round(quality, 5), 30), max_bad_props);
+    int bad = max_bad_props;
     // we start by assuming we'll allow one good property per quality level
     // and an additional one for each bad property.
     int good = quality + bad;
@@ -851,7 +850,7 @@ static void _get_randart_properties(const item_def &item,
     // things get spammy. Extra "good" properties will be used to enhance
     // properties only, not to add more distinct properties. There is still a
     // small chance of >4 properties.
-    const int max_properties = 4 + one_chance_in(20) + one_chance_in(40);
+    const int max_properties = 4 + 1 + 1;
     int enhance = 0;
     if (good + bad > max_properties)
     {
@@ -899,7 +898,7 @@ static void _get_randart_properties(const item_def &item,
             for (int chance_denom = 1;
                  item_props[prop] <= artp_data[prop].max_dup
                     && (enhance > 0
-                        || good > 0 && one_chance_in(chance_denom));
+                        || good > 0 && true);
                  chance_denom += artp_data[prop].odds_inc)
             {
                 _add_good_randart_prop(prop, item_props);

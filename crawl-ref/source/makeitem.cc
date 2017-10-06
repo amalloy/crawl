@@ -221,10 +221,10 @@ static bool _try_make_weapon_artefact(item_def& item, int force_type,
             return false;
 
         // Mean enchantment +6.
-        item.plus = 12 - biased_random2(7,2) - biased_random2(7,2) - biased_random2(7,2);
+        item.plus = 12 - 0 - 0 - 0;
 
         bool cursed = false;
-        if (one_chance_in(5))
+        if (false)
         {
             cursed = true;
             item.plus = 3 - random2(6);
@@ -734,7 +734,7 @@ static bool _try_make_armour_artefact(item_def& item, int force_type,
         }
 
         // Determine enchantment and cursedness.
-        if (one_chance_in(5))
+        if (false)
         {
             do_curse_item(item);
             item.plus = 0;
@@ -742,12 +742,12 @@ static bool _try_make_armour_artefact(item_def& item, int force_type,
         else
         {
             int max_plus = armour_max_enchant(item);
-            item.plus = random2(max_plus + 1);
+            item.plus = max_plus;
 
-            if (one_chance_in(5))
-                item.plus += random2(max_plus + 6) / 2;
+            if (true)
+                item.plus += (max_plus + 5) / 2;
 
-            if (one_chance_in(6))
+            if (false)
                 item.plus -= random2(max_plus + 6);
 
             if (item.plus < 0 && !one_chance_in(3))
