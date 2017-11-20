@@ -5320,10 +5320,17 @@ bool join_the_dots(const coord_def &from, const coord_def &to,
 
     for (auto c : path)
     {
-        if (!map_masked(c, mapmask) && overwriteable(grd(c)))
+        auto feat = grd(c);
+        const char* feat_name = get_feature_def(feat).name;
+        if (!map_masked(c, mapmask) && overwriteable(feat))
         {
             grd(c) = DNGN_FLOOR;
             dgn_height_set_at(c);
+        }
+        else
+        {
+            dprf(DIAG_DNGN, "Failed to path through %s at (%d;%d) for connectivity",
+                 feat_name, c.x, c.y);
         }
     }
 
@@ -6824,6 +6831,7 @@ int vault_placement::connect(bool spotty) const
                && dgn_shoals_connect_point(c, _feat_is_wall_floor_liquid)
             || _connect_vault_exit(c))
         {
+            dprf(DIAG_DNGN, "Placed exit from (%d;%d).", c.x, c.y);
             exits_placed++;
         }
         else

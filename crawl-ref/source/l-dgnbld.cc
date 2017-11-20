@@ -148,21 +148,40 @@ static bool _valid_coord(lua_State *ls, map_lines &lines, int x, int y, bool err
 
 // Does what fill_area did, but here, so that it can be used through
 // multiple functions (including make_box).
-static int _fill_area(lua_State *ls, map_lines &lines, int x1, int y1, int x2, int y2, char fill)
+static int _fill_area(lua_State *ls, map_lines &lines, int x1, int y1, int x2, int y2, char fill, int mask = 0)
 {
+    if (fill == 't')
+        dprf(DIAG_DNGN, "Placing tree fill starting at (%d;%d)", x1, y1);
     for (int y = y1; y <= y2; ++y)
         for (int x = x1; x <= x2; ++x)
+        {
+            coord_def pos(x, y);
             lines(x, y) = fill;
+            env.level_map_mask(pos) |= mask;
+        }
 
     return 0;
 }
 
-static void _border_area(map_lines &lines, int x1, int y1, int x2, int y2, char border)
+static void _border_area(map_lines &lines, int x1, int y1, int x2, int y2, char border, int mask = 0)
 {
+    if (border == 't')
+        dprf(DIAG_DNGN, "Placing tree border");
+    function<void(int x, int y)> paint = [&](int x, int y) {
+        coord_def pos(x, y);
+        lines(x, y) = border;
+        env.level_map_mask(pos) |= mask;
+    };
     for (int x = x1 + 1; x < x2; ++x)
-        lines(x, y1) = border, lines(x, y2) = border;
+    {
+        paint(x, y1);
+        paint(x, y2);
+    }
     for (int y = y1; y <= y2; ++y)
-        lines(x1, y) = border, lines(x2, y) = border;
+    {
+        paint(x1, y);
+        paint(x2, y);
+    }
 }
 
 // Does what count_passable_neighbors does, but in C++ form.
@@ -615,12 +634,15 @@ LUAFN(dgn_fill_area)
     if (!_coords(ls, lines, x1, y1, x2, y2))
         return 0;
 
+    bool is_vault = _table_bool(ls, -1, "vault", false);
+    int mask = is_vault ? MMT_VAULT : 0;
+
     TABLE_CHAR(ls, fill, 'x');
     TABLE_CHAR(ls, border, fill);
 
-    _fill_area(ls, lines, x1, y1, x2, y2, fill);
+    _fill_area(ls, lines, x1, y1, x2, y2, fill, mask);
     if (border != fill)
-        _border_area(lines, x1, y1, x2, y2, border);
+        _border_area(lines, x1, y1, x2, y2, border, mask);
 
     return 0;
 }
